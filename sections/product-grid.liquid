@@ -1,21 +1,52 @@
 <section class="container-fluid section-wrapper py-5">
-  <h2 class="text-center mb-4">{{ section.settings.heading }}</h2>
-  <div class="row">
-    {% assign products = collections[section.settings.collection].products %}
-    {% for product in products limit: section.settings.limit %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <a href="{{ product.url }}">
-            <img src="{{ product.featured_image | image_url: width: 600 }}" class="card-img-top" alt="{{ product.title }}">
-          </a>
-          <div class="card-body text-center">
-            <h5 class="card-title">{{ product.title }}</h5>
-            <p class="card-text">{{ product.price | money }}</p>
-            <a href="{{ product.url }}" class="btn btn-primary">View Product</a>
+  <div
+    class="custom-container"
+  >
+    <h2 class="text-center mb-4">{{ section.settings.heading }}</h2>
+    <div class="row">
+      {% assign products = collections[section.settings.collection].products %}
+      {% if products.size > 0 %}
+        {% for product in products limit: section.settings.limit %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <a href="{{ product.url }}">
+                <img
+                  width="600"
+                  height="400"
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  class="card-img-top"
+                  alt="{{ product.title }}"
+                >
+              </a>
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p class="card-text">{{ product.price | money }}</p>
+                <a href="{{ product.url }}" class="btn btn-primary">View Product</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    {% endfor %}
+        {% endfor %}
+      {% else %}
+        {% for i in (1..9) %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <img
+                width="600"
+                height="400"
+                src="{{ 'fallback-product.jpg' | asset_url }}"
+                class="card-img-top"
+                alt="Placeholder Product {{ i }}"
+              >
+              <div class="card-body text-center">
+                <h5 class="card-title">Sample Product {{ i }}</h5>
+                <p class="card-text">$19.99</p>
+                <a href="#" class="btn btn-secondary disabled">View Product</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
   </div>
 </section>
 

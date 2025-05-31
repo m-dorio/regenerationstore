@@ -15,15 +15,15 @@
     "main": {
       "type": "main"
     },
-    "featured-cards": {
-      "type": "featured-cards"
-    },
+    // "featured-cards": {
+    //   "type": "featured-cards"
+    // },
     "products": {
       "type": "product-grid"
     },
-    "richtext": {
-      "type": "richtext"
-    },
+    // "richtext": {
+    //   "type": "richtext"
+    // },
     "footer": {
       "type": "footer"
     }
@@ -31,9 +31,9 @@
   "order": [
     "header",
     "main",
-    "featured-cards",
+    // "featured-cards",
     "products",
-    "richtext",
+    // "richtext",
     "footer"
   ]
 }
