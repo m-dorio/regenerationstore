@@ -1,0 +1,10 @@
+.shopify-section {
+    --content-width: 100% !important;
+    --content-margin: 0 !important;
+    --content-grid: 0 1fr 0 !important;
+    grid-template-columns: var(--content-grid) !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 1920px !important;
+}

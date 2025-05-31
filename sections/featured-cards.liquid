@@ -1,0 +1,64 @@
+<section class="container py-5">
+  <div class="row text-center">
+    {% for block in section.blocks %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | image_url: width: 400 }}" class="card-img-top" alt="{{ block.settings.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ block.settings.title }}</h5>
+            <p class="card-text">{{ block.settings.text }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature Cards",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Fast Shipping"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "We ship all orders within 24 hours."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Cards",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

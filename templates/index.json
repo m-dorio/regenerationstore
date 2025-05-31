@@ -9,12 +9,31 @@
  */
 {
   "sections": {
+    "header": {
+      "type": "header"
+    },
     "main": {
-      "type": "hello-world",
-      "settings": {}
+      "type": "main"
+    },
+    "featured-cards": {
+      "type": "featured-cards"
+    },
+    "products": {
+      "type": "product-grid"
+    },
+    "richtext": {
+      "type": "richtext"
+    },
+    "footer": {
+      "type": "footer"
     }
   },
   "order": [
-    "main"
+    "header",
+    "main",
+    "featured-cards",
+    "products",
+    "richtext",
+    "footer"
   ]
 }

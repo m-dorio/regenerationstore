@@ -1,0 +1,44 @@
+<section class="container-fluid py-5 text-center bg-dark text-white rounded-3 shadow-lg">
+  <h1 class="display-4 fw-bold">{{ section.settings.heading }}</h1>
+  <p class="lead mb-4">{{ section.settings.subtext }}</p>
+  <a href="{{ section.settings.button_link }}" class="btn btn-outline-light btn-lg px-4">
+    {{ section.settings.button_text }}
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner - Dark Theme",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Welcome to Our Store"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Browse our collection of amazing products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner - Dark"
+    }
+  ]
+}
+{% endschema %}

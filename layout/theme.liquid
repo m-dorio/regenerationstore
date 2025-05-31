@@ -4,6 +4,8 @@
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
+    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
 
@@ -14,10 +16,10 @@
   </head>
 
   <body>
-    {% sections 'header-group' %}
+    <main class="w-100">
+      {{ content_for_layout }}  {# This is where page content goes #}
+    </main>
+    {{ 'bootstrap.bundle.min.js' | asset_url | script_tag }}
 
-    {{ content_for_layout }}
-
-    {% sections 'footer-group' %}
   </body>
 </html>
