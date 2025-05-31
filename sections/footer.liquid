@@ -1,57 +1,32 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
+<footer class="bg-dark text-light py-4 mt-5 border-top">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+    
+    <!-- Copyright -->
+    <div class="footer__copyright text-muted small">
+      &copy; {{ 'now' | date: '%Y' }}
+      {{ shop.name | link_to: routes.root_url }},
+      {{ powered_by_link }}
+    </div>
 
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
+    <!-- Footer Links -->
+    <div class="footer__links d-flex gap-3 flex-wrap justify-content-center">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}" class="footer-link text-muted text-decoration-none hover-text-light">
+          {{ link.title }}
+        </a>
       {% endfor %}
+    </div>
+
+    <!-- Payment Icons -->
+    {% if section.settings.show_payment_icons %}
+      <div class="footer__payment d-flex gap-2 align-items-center">
+        {% for type in shop.enabled_payment_types %}
+          <span class="payment-icon">{% comment %} You can style these better with CSS if needed {% endcomment %}
+            {{ type | payment_type_svg_tag }}
+          </span>
+        {% endfor %}
+      </div>
     {% endif %}
+
   </div>
 </footer>
-
-{% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
-
-{% schema %}
-{
-  "name": "t:general.footer",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
-    }
-  ]
-}
-{% endschema %}

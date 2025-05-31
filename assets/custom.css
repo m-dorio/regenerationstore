@@ -8,3 +8,26 @@
     width: 100% !important;
     max-width: 1920px !important;
 }
+
+.section-wrapper {
+    min-height: 60vh;
+    /* Base height: 60% of viewport */
+    padding: 4rem 1rem;
+    /* Ample vertical space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center content vertically */
+    align-items: center;
+    /* Center content horizontally */
+    text-align: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .section-wrapper {
+        padding: 3rem 1rem;
+        min-height: auto;
+        /* Let it grow naturally on small screens */
+    }
+}
