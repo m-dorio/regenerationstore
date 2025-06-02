@@ -11,9 +11,7 @@
             <div class="card h-100">
               <a href="{{ product.url }}">
                 <img
-                  width="600"
-                  height="100%"
-                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  src="{{ product.featured_image | image_url}}"
                   class="card-img-top"
                   alt="{{ product.title }}"
                 >
@@ -31,8 +29,6 @@
           <div class="col-md-4 mb-4">
             <div class="card h-100">
               <img
-                width="600"
-                height="400"
                 src="{{ 'fallback-product.jpg' | asset_url }}"
                 class="card-img-top"
                 alt="Placeholder Product {{ i }}"
