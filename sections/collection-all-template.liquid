@@ -2,6 +2,18 @@
   Collection All Template - shows all products under /collections/all
 {% endcomment %}
 
+{% style %}
+ .search-result img {
+    object-fit: cover;
+    min-height:180px;
+    width:100%;
+  }
+{% endstyle %}
+
+<section class="container-fluid section-wrapper py-5">
+  <div
+    class="custom-container"
+  >
 <h1>All Products</h1>
 
 {% paginate collection.products by 12 %}
@@ -28,7 +40,8 @@
   {% endif %}
 
 {% endpaginate %}
-
+  </div>
+</section>
 {% stylesheet %}
   .product-grid {
     display: grid;
