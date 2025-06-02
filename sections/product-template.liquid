@@ -1,0 +1,38 @@
+<div class="product-page container">
+  <div class="product-wrapper" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+    <!-- Product Image -->
+    <div class="product-image" style="flex: 1;">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}" style="max-width: 100%;">
+      {% endif %}
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-details" style="flex: 1;">
+      <h1>{{ product.title }}</h1>
+
+      <!-- Price -->
+      <p class="product-price">
+        {{ product.price | money }}
+      </p>
+
+      <!-- Product Form -->
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        <button type="submit">Add to cart</button>
+      </form>
+
+      <!-- Description -->
+      <div class="product-description" style="margin-top: 1rem;">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Template",
+  "settings": []
+}
+{% endschema %}
