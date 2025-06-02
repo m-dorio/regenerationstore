@@ -17,10 +17,30 @@
       </p>
 
       <!-- Product Form -->
-      <form method="post" action="/cart/add">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-        <button type="submit">Add to cart</button>
-      </form>
+     <form method="post" action="/cart/add">
+  {% if product.has_only_default_variant == false %}
+    <label for="product-variant">Choose a variant:</label>
+    <select name="id" id="product-variant">
+      {% for variant in product.variants %}
+        <option value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money }}
+        </option>
+      {% endfor %}
+    </select>
+  {% else %}
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+  {% endif %}
+
+  <!-- Quantity -->
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" name="quantity" value="1" min="1" />
+
+  <!-- Add to Cart Button -->
+  <button type="submit" class="add-to-cart-btn">
+    Add to cart
+  </button>
+</form>
+
 
       <!-- Description -->
       <div class="product-description" style="margin-top: 1rem;">
