@@ -10,30 +10,26 @@
 {
   "sections": {
     "header": {
-      "type": "header"
+      "type": "header",
+      "settings": {}
     },
-    "main": {
-      "type": "main"
+    "banner": {
+      "type": "banner",
+      "settings": {}
     },
-    // "featured-cards": {
-    //   "type": "featured-cards"
-    // },
     "products": {
-      "type": "product-grid"
+      "type": "product-grid",
+      "settings": {}
     },
-    // "richtext": {
-    //   "type": "richtext"
-    // },
     "footer": {
-      "type": "footer"
+      "type": "footer",
+      "settings": {}
     }
   },
   "order": [
     "header",
-    "main",
-    // "featured-cards",
+    "banner",
     "products",
-    // "richtext",
     "footer"
   ]
 }
