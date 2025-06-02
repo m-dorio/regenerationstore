@@ -1,0 +1,67 @@
+<div class="cart-page container" style="max-width: 1200px; margin: auto; padding: 2rem;">
+  <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Your Cart</h1>
+
+  {% if cart.item_count == 0 %}
+    <p>Your cart is currently empty.</p>
+    <a href="/" style="display: inline-block; margin-top: 1rem; color: blue;">← Continue shopping</a>
+  {% else %}
+
+    <form action="/cart" method="post">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding-bottom: 1rem;">Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr style="border-top: 1px solid #ccc;">
+              <td style="padding: 1rem 0;">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.product.title }}" style="width: 60px;">
+                  <div>
+                    <a href="{{ item.url }}" style="font-weight: bold;">{{ item.product.title }}</a>
+                    {% if item.variant.title != 'Default Title' %}
+                      <div style="font-size: 0.875rem; color: gray;">{{ item.variant.title }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+              </td>
+              <td>{{ item.price | money }}</td>
+              <td>
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width: 60px; text-align: center;" />
+              </td>
+              <td>{{ item.line_price | money }}</td>
+              <td>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" style="color: red;">Remove</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <strong>Subtotal:</strong> {{ cart.total_price | money }}
+        </div>
+
+        <div>
+          <input type="submit" value="Update Cart" style="padding: 0.5rem 1rem; margin-right: 1rem;">
+          <a href="/checkout" class="checkout-btn" style="background: black; color: white; padding: 0.75rem 1.5rem; text-decoration: none;">Proceed to Checkout</a>
+        </div>
+      </div>
+    </form>
+
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Cart Template",
+  "settings": []
+}
+{% endschema %}
