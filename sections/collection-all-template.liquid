@@ -2,6 +2,21 @@
   Collection All Template - shows all products under /collections/all
 {% endcomment %}
 
+{% style %}
+  .product-card img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    min-height: 260px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover img {
+    transform: scale(1.03);
+  }
+{% endstyle %}
+
 <section class="container-fluid section-wrapper py-5">
   <div class="custom-container">
     <h1 style="text-align: center; font-size: 2.25rem; margin-bottom: 2rem;">All Products</h1>
@@ -9,46 +24,31 @@
     {% paginate collection.products by 12 %}
       {% if collection.products.size > 0 %}
         <div class="product-grid">
-       {% for product in collection.products %}
-  <div class="product-card">
-    <a href="{{ product.url }}">
-      {% if product.featured_image %}
-        <img
-          src="{{ product.featured_image | image_url: width: 500 }}"
-          alt="{{ product.title | escape }}"
-          loading="lazy"
-        />
-      {% else %}
-        <img src="{{ 'placeholder.jpg' | asset_url }}" alt="No image" />
-      {% endif %}
-    </a>
-
-    <div class="product-info">
-      <h3>{{ product.title }}</h3>
-      <p class="product-price">
-        {% if product.price_varies %}
-          From {{ product.price_min | money_with_currency }}
-        {% else %}
-          {{ product.price | money_with_currency }}
-        {% endif %}
-      </p>
-
-      {% if product.variants.size == 1 %}
-        <!-- Form for single-variant products -->
-        <form method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-          <label for="quantity-{{ product.id }}" style="display:block;">Qty:</label>
-          <input type="number" name="quantity" id="quantity-{{ product.id }}" value="1" min="1" style="width: 60px; margin-bottom: 10px;" />
-          <button type="submit" class="btn-add-to-cart">Add to Cart</button>
-        </form>
-      {% else %}
-        <!-- For multi-variant products, link to product page -->
-        <p><a href="{{ product.url }}" class="btn-select-options">Select Options</a></p>
-      {% endif %}
-    </div>
-  </div>
-{% endfor %}
-
+          {% for product in collection.products %}
+            <div class="product-card">
+              <a href="{{ product.url }}">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 500 }}"
+                    alt="{{ product.title | escape }}"
+                    loading="lazy"
+                  />
+                {% else %}
+                  <img src="{{ 'placeholder.jpg' | asset_url }}" alt="No image" />
+                {% endif %}
+                <div class="product-info">
+                  <h3>{{ product.title }}</h3>
+                  <p class="product-price">
+                    {% if product.price_varies %}
+                      From {{ product.price_min | money_with_currency }}
+                    {% else %}
+                      {{ product.price | money_with_currency }}
+                    {% endif %}
+                  </p>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
         </div>
 
         <div class="pagination">
@@ -116,37 +116,6 @@
     .product-grid {
       grid-template-columns: 1fr;
     }
-  }
-
-  .btn-add-to-cart,
-.btn-select-options {
-  display: inline-block;
-  background-color: #007b5e;
-  color: white;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.btn-add-to-cart:hover,
-.btn-select-options:hover {
-  background-color: #005f49;
-}
-
-    .product-card img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-    min-height: 260px;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-  }
-
-  .product-card:hover img {
-    transform: scale(1.03);
   }
 {% endstylesheet %}
 
