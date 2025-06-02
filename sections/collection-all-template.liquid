@@ -2,21 +2,6 @@
   Collection All Template - shows all products under /collections/all
 {% endcomment %}
 
-{% style %}
-  .product-card img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-    min-height: 260px;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-  }
-
-  .product-card:hover img {
-    transform: scale(1.03);
-  }
-{% endstyle %}
-
 <section class="container-fluid section-wrapper py-5">
   <div class="custom-container">
     <h1 style="text-align: center; font-size: 2.25rem; margin-bottom: 2rem;">All Products</h1>
@@ -131,6 +116,37 @@
     .product-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .btn-add-to-cart,
+.btn-select-options {
+  display: inline-block;
+  background-color: #007b5e;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-add-to-cart:hover,
+.btn-select-options:hover {
+  background-color: #005f49;
+}
+
+    .product-card img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    min-height: 260px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover img {
+    transform: scale(1.03);
   }
 {% endstylesheet %}
 
