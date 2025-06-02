@@ -1,6 +1,63 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% comment %}
+  Collection All Template - shows all products under /collections/all
+{% endcomment %}
+
+<h1>All Products</h1>
+
+{% paginate collection.products by 12 %}
+
+  {% if collection.products.size > 0 %}
+    <div class="product-grid">
+      {% for product in collection.products %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy" />
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.price | money_with_currency }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="pagination">
+      {{ paginate | default_pagination }}
+    </div>
+
+  {% else %}
+    <p>No products found in this collection.</p>
+  {% endif %}
+
+{% endpaginate %}
+
+{% stylesheet %}
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
   }
+
+  .product-card {
+    border: 1px solid #e1e1e1;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .pagination {
+    margin-top: 2rem;
+    text-align: center;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "All Products Collection",
+  "settings": []
+}
 {% endschema %}
