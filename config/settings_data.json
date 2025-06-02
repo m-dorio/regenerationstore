@@ -15,9 +15,9 @@
         "settings": {
           "heading": "Welcome to Our Store",
           "subtext": "Browse our collection of amazing products",
-          "button_link": "shopify://collections/all",
+          "button_link": "shopify://collections/featured-products-collection",
           "button_text": "Shop Now",
-          "product_collection": ""
+          "product_collection": "featured-products-collection"
         }
       },
       "product-grid": {
