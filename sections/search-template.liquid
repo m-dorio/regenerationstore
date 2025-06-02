@@ -7,17 +7,25 @@
 
 <h1>{{ 'search.title' | t }}</h1>
 
+<!-- Search Form -->
 <form action="{{ routes.search_url }}" method="get" role="search">
+  <input
+    type="hidden"
+    name="type"
+    value="product"
+  >
   <input
     type="search"
     size="50"
     name="q"
     value="{{ search.terms | escape }}"
     placeholder="{{ 'search.placeholder' | t }}"
+    style="padding: 0.5rem; width: 70%;"
   >
-  <button type="submit">{{ 'search.submit' | t }}</button>
+  <button type="submit" style="padding: 0.5rem 1rem;">{{ 'search.submit' | t }}</button>
 </form>
 
+<!-- Results -->
 {% if search.performed %}
   {% if search.results_count == 0 %}
     <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
@@ -26,24 +34,22 @@
 
     <div class="search-results">
       {% paginate search.results by 20 %}
-        {% # Search result items may be an article, a page, or a product. %}
         {% for result in search.results %}
-          <div class="search-result">
+          <div class="search-result" style="border: 1px solid #ddd; padding: 1rem; margin-bottom: 1.5rem;">
             {% assign featured_image = result.featured_image | default: result.image %}
             {% if featured_image %}
               {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
             {% endif %}
             <div class="search-result__content">
-              <p>
+              <p style="margin: 0.5rem 0;">
                 {{ result.title | link_to: result.url }}
-                {% if result.price %}
-                  {{ result.price | money_with_currency }}
+                {% if result.object_type == 'product' and result.price %}
+                  <br><strong>{{ result.price | money_with_currency }}</strong>
                 {% endif %}
               </p>
             </div>
           </div>
         {% endfor %}
-
         {{ paginate | default_pagination }}
       {% endpaginate %}
     </div>
@@ -54,11 +60,18 @@
   .search-results {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
   }
-  .search-results .prev,
-  .search-results .page,
-  .search-results .next {
-    grid-column: 1 / -1;
+
+  .search-result__image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .search-result__content {
+    padding-top: 0.5rem;
   }
 {% endstylesheet %}
 
