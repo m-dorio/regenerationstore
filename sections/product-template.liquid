@@ -13,57 +13,56 @@
 }
 
 {% endstyle %}
-
-
-<div class="product-page container">
+<div class="product-page container" style="max-width: 1200px; margin: auto; padding: 2rem;">
   <div class="product-wrapper" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+
     <!-- Product Image -->
     <div class="product-image" style="flex: 1;">
       {% if product.featured_image %}
-        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}" style="max-width: 100%;">
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}" style="max-width: 100%; height: auto;">
       {% endif %}
     </div>
 
-    <!-- Product Details -->
+    <!-- Product Info -->
     <div class="product-details" style="flex: 1;">
-      <h1>{{ product.title }}</h1>
+      <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">{{ product.title }}</h1>
 
-      <!-- Price -->
-      <p class="product-price">
+      <p class="product-price" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">
         {{ product.price | money }}
       </p>
 
-      <!-- Product Form -->
-     <form method="post" action="/cart/add">
-  {% if product.has_only_default_variant == false %}
-    <label for="product-variant">Choose a variant:</label>
-    <select name="id" id="product-variant">
-      {% for variant in product.variants %}
-        <option value="{{ variant.id }}">
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
-  {% else %}
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-  {% endif %}
+      <!-- Add to Cart Form -->
+      <form method="post" action="/cart/add" style="display: flex; flex-direction: column; gap: 1rem;">
+        {% if product.has_only_default_variant == false %}
+          <label for="product-variant">Choose a variant:</label>
+          <select name="id" id="product-variant" style="padding: 0.5rem;">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" {% if variant.available == false %}disabled{% endif %}>
+                {{ variant.title }} - {{ variant.price | money }}
+                {% unless variant.available %}(Sold Out){% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        {% endif %}
 
-  <!-- Quantity -->
-  <label for="quantity">Quantity:</label>
-  <input type="number" id="quantity" name="quantity" value="1" min="1" />
+        <!-- Quantity -->
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px; padding: 0.25rem;" />
 
-  <!-- Add to Cart Button -->
-  <button type="submit" class="add-to-cart-btn">
-    Add to cart
-  </button>
-</form>
+        <!-- Add to Cart Button -->
+        <button type="submit" class="add-to-cart-btn" style="padding: 0.75rem 1.5rem; background: black; color: white; border: none; cursor: pointer;">
+          Add to cart
+        </button>
+      </form>
 
-
-      <!-- Description -->
-      <div class="product-description" style="margin-top: 1rem;">
+      <!-- Product Description -->
+      <div class="product-description" style="margin-top: 2rem;">
         {{ product.description }}
       </div>
     </div>
+
   </div>
 </div>
 
