@@ -8,5 +8,31 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "sections": {
+      "banner": {
+        "type": "banner",
+        "settings": {
+          "heading": "Welcome to Our Store",
+          "subtext": "Browse our collection of amazing products",
+          "button_link": "shopify://collections/all",
+          "button_text": "Shop Now",
+          "product_collection": ""
+        }
+      },
+      "product-grid": {
+        "type": "product-grid",
+        "settings": {
+          "heading": "Featured Products",
+          "collection": "featured-products-collection",
+          "limit": 9
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
 }
