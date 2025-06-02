@@ -4,7 +4,10 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/search
 {% endcomment %}
-
+<section class="container-fluid section-wrapper py-5">
+  <div
+    class="custom-container"
+  >
 <h1>{{ 'search.title' | t }}</h1>
 
 <!-- Search Form -->
@@ -24,7 +27,8 @@
   >
   <button type="submit" style="padding: 0.5rem 1rem;">{{ 'search.submit' | t }}</button>
 </form>
-
+  </div>
+</section>
 <!-- Results -->
 {% if search.performed %}
   {% if search.results_count == 0 %}
