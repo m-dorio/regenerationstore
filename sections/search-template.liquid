@@ -46,7 +46,7 @@
     <div class="search-results">
       {% paginate search.results by 20 %}
         {% for result in search.results %}
-          <div class="search-result" style="border: 1px solid #ddd; padding: 1rem; margin-bottom: 1.5rem;">
+          <div class="search-result" style="border: 1px solid #333; padding: 1rem; margin-bottom: 1.5rem;">
             {% assign featured_image = result.featured_image | default: result.image %}
             {% if featured_image %}
               {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
