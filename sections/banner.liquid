@@ -65,6 +65,129 @@
   </div>
 </section>
 
+{% stylesheet %}
+  .bg-banner-image {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(rgba(0, 0, 0, 0.1), #ffffff73);
+    z-index: 1;
+  }
+
+  .banner-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .content-wrapper {
+    max-width: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+
+/* Swiper wrapper base */
+.product-swiper {
+  position: relative;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+/* The wrapper that holds the slides */
+.product-swiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Each individual slide */
+.product-swiper .swiper-slide {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.product-swiper .swiper-slide:hover {
+  transform: translateY(-5px);
+}
+
+/* Product images */
+.product-swiper img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 50%;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Pagination dots if you enable them */
+.swiper-pagination-bullet {
+  background: white;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .product-swiper {
+    padding: 1rem 0;
+  }
+
+  .product-swiper .swiper-slide {
+    padding: 0.5rem;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none; /* Hide nav arrows on small screens if desired */
+  }
+}
+
+
+  @media (max-width: 768px) {
+    .banner-grid {
+      grid-template-columns: 1fr;
+    }
+    .content-wrapper {
+      padding: 1rem;
+      max-width: 100%;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "Hero Banner - Dark Theme",
@@ -106,4 +229,3 @@
   ]
 }
 {% endschema %}
-
