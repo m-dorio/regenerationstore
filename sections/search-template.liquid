@@ -9,7 +9,6 @@
     class="custom-container"
   >
 <h1>{{ 'search.title' | t }}</h1>
-
 <!-- Search Form -->
 <form action="{{ routes.search_url }}" method="get" role="search">
   <input
@@ -27,9 +26,8 @@
   >
   <button type="submit" style="padding: 0.5rem 1rem;">{{ 'search.submit' | t }}</button>
 </form>
-  </div>
-</section>
-<!-- Results -->
+
+    <!-- Results -->
 {% if search.performed %}
   {% if search.results_count == 0 %}
     <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
@@ -59,6 +57,10 @@
     </div>
   {% endif %}
 {% endif %}
+
+  </div>
+</section>
+
 
 {% stylesheet %}
   .search-results {
