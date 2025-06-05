@@ -14,9 +14,12 @@
         "type": "banner",
         "settings": {
           "heading": "Welcome to Our Store",
+          "heading_color": "#ff0000",
           "subtext": "Browse our collection of amazing products",
+          "subtext_color": "#101eff",
           "button_link": "shopify://collections/all",
           "button_text": "Shop Now",
+          "button_text_color": "#ffffff",
           "product_collection": "featured-products-collection"
         }
       },
