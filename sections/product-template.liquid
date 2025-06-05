@@ -67,13 +67,12 @@
   </div>
 </div>
 
-<section>
+
   {% if product.metafields.Type.device_capacity %}
     <p><strong>Device Capacity:</strong> {{ product.metafields.Type.device_capacity.value }}</p>
   {% else %}
     <p>No device capacity info available.</p>
   {% endif %}
-</section>
 
 {% schema %}
 {
