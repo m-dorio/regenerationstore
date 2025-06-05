@@ -49,10 +49,7 @@
 
         <!-- Quantity -->
         <label for="quantity">Quantity:</label>
-       {% if product.metafields.Type.device_capacity %}
-  <p>Capacity: {{ product.metafields.Type.device_capacity }}</p>
-{% endif %}
-
+        <label>{{ product.metafields.Type.device_capacity.value }}</label>
         <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px; padding: 0.25rem;" />
 
         <!-- Add to Cart Button -->
@@ -70,17 +67,18 @@
   </div>
 </div>
 
+<section>
+  {% if product.metafields.Type.device_capacity %}
+    <p><strong>Device Capacity:</strong> {{ product.metafields.Type.device_capacity.value }}</p>
+  {% else %}
+    <p>No device capacity info available.</p>
+  {% endif %}
+</section>
+
 {% schema %}
 {
-  "name": "Device Capacity Display",
+  "name": "Device Capacity",
   "settings": [],
-  "blocks": [
-    {
-      "type": "capacity",
-      "name": "Device Capacity",
-      "settings": []
-    }
-  ],
   "presets": [
     {
       "name": "Device Capacity Section"
@@ -88,4 +86,3 @@
   ]
 }
 {% endschema %}
-
